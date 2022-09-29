@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Online Python Compiler</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.code-container {
+			margin: 2em;
+			border: 1px solid blue;
+			background: #1a2224;
+		}
+		.code-header {
+			background: #4925c4;
+			color: #fff;
+			font-size: 1.4em;
+			display: flex;
+			justify-content: space-between;
+			padding: 1em;
+		}
+		form {
+			margin: 0 0;
+		}
+		#code-box {
+			width: 100%;
+			height: 50vh;
+			padding: 5px 10px;
+			background: #1a2224;
+			color: #fff;
+		}
+		#code-output {
+			width: 100%;
+			height: 30vh;
+			background: #1a2224;
+			padding: 10px;
+			border: none;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="code-container">
+		<div class="code-header">
+			<legend class="code-title">PyCompiler</legend>
+			<i class="fa fa-play" id="run-btn"></i>
+		</div>
+		<form id="form" method="post">
+		{% csrf_token %}
+			<textarea name="snippet" id="code-box">{{ code_snippet }}</textarea>
+			<textarea name="code-output" id="code-output" readonly>{{ code_result }}</textarea>
+		</form>
+	</div>
+	
+	<script>
+		var runBtn = document.getElementById("run-btn");
+		var form = document.getElementById("form");
+		
+		runBtn.addEventListener("click", function () {
+			form.submit()
+		})
+	</script>
+	
+</body>
+</html>
